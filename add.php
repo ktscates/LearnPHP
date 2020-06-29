@@ -35,7 +35,15 @@
                 $errors['ingredients'] = 'Ingredients must be a comma separated list'; 
             }
         }
-    }
+
+        if(array_filter($errors)){
+            // echo 'errors in the form';
+        }else{
+            // echo 'form is valid';
+            header('Location: index.php');
+        }
+
+    } // End of POST check
 
 ?>
 <!DOCTYPE html>
@@ -50,17 +58,17 @@
         <form action="add.php" method="POST" class="white">
 
             <label>Your Email:</label>
-            <input type="text" name="email" value="<?php echo $email ?>">
+            <input type="text" name="email" value="<?php echo htmlspecialchars($email) ?>">
 
             <div class="red-text"><?php echo $errors['email']; ?></div>
 
             <label>Pizza Title:</label>
-            <input type="text" name="title" value="<?php echo $title ?>">
+            <input type="text" name="title" value="<?php echo htmlspecialchars($title) ?>"> 
 
             <div class="red-text"><?php echo $errors['title']; ?></div> 
 
             <label>Ingredients (comma separated):</label>
-            <input type="text" name="ingredients" value="<?php echo $ingredients ?>">
+            <input type="text" name="ingredients" value="<?php echo htmlspecialchars($ingredients) ?>">
 
             <div class="red-text"><?php echo $errors['ingredients']; ?></div>
 
